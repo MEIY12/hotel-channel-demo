@@ -2,6 +2,81 @@
 
 This guide walks you through setting up your Contentful space for the Channel Demo application.
 
+---
+
+## 🚀 Quick Setup: Import Pre-configured Content (Recommended)
+
+This repository includes a ready-to-use export file that contains the complete content model and sample data. This is the fastest way to get started!
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) 18+ installed
+- A [Contentful account](https://www.contentful.com/) (free tier works!)
+
+### Step 1: Install Contentful CLI
+
+```bash
+npm install -g contentful-cli
+```
+
+### Step 2: Login to Contentful
+
+```bash
+contentful login
+```
+
+This will open a browser window to authenticate. Follow the prompts to generate an access token.
+
+### Step 3: Create a New Space (or use existing)
+
+```bash
+# Create a new space
+contentful space create --name "Hotel Channel Demo"
+```
+
+Note the **Space ID** that's returned - you'll need this for the import and for your environment variables.
+
+**Or** if you want to use an existing space:
+
+```bash
+# List your spaces to find the ID
+contentful space list
+```
+
+### Step 4: Import the Content
+
+```bash
+contentful space import --space-id YOUR_SPACE_ID --content-file contentful-space-export.json
+```
+
+Replace `YOUR_SPACE_ID` with your actual space ID from Step 3.
+
+This will import:
+- ✅ The **Hotel Property** content type with all fields configured
+- ✅ A sample entry for **"The Maritime Denver"** hotel
+- ✅ Sample images (hero image and room photos)
+
+### Step 5: Get Your API Keys
+
+1. Go to [Contentful](https://app.contentful.com/)
+2. Open your space
+3. Navigate to **Settings** → **API keys**
+4. Click **Add API key** (or use the default one)
+5. Copy your:
+   - **Space ID**
+   - **Content Delivery API - access token**
+   - **Content Preview API - access token** (for Live Preview)
+
+### Step 6: Configure Your App
+
+See [Step 6 in Manual Setup](#step-6-configure-your-app) below for environment variable configuration.
+
+---
+
+## 📝 Manual Setup: Create Everything from Scratch
+
+If you prefer to create the content model manually (useful for learning), follow the steps below.
+
 ## Step 1: Create a Contentful Space
 
 1. Go to [contentful.com](https://www.contentful.com/) and sign up or log in

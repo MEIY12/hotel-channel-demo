@@ -1,0 +1,1316 @@
+{
+  "contentTypes": [
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "nhsxjzumacj6"
+          }
+        },
+        "id": "hotelProperty",
+        "type": "ContentType",
+        "createdAt": "2025-11-09T00:31:27.379Z",
+        "updatedAt": "2025-11-09T00:31:32.989Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 1,
+        "publishedAt": "2025-11-09T00:31:32.989Z",
+        "firstPublishedAt": "2025-11-09T00:31:32.989Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2OKyzSJzpNydSbviPxbSrN"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2OKyzSJzpNydSbviPxbSrN"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 2,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2OKyzSJzpNydSbviPxbSrN"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/nhsxjzumacj6/environments/master/content_types/hotelProperty"
+      },
+      "displayField": "propertyName",
+      "name": "Hotel Property",
+      "description": "Hotel property for multi-channel demo showcasing channel-agnostic content management",
+      "fields": [
+        {
+          "id": "propertyName",
+          "name": "Property Name",
+          "type": "Symbol",
+          "localized": true,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "heroHeadline",
+          "name": "Hero Headline",
+          "type": "Symbol",
+          "localized": true,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "location",
+          "name": "Location",
+          "type": "Symbol",
+          "localized": true,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "roomType",
+          "name": "Room Type",
+          "type": "Symbol",
+          "localized": true,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "roomDescription",
+          "name": "Room Description",
+          "type": "Text",
+          "localized": true,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "neighborhoodVibe",
+          "name": "Neighborhood Vibe",
+          "type": "Text",
+          "localized": true,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "signatureExperience",
+          "name": "Signature Experience",
+          "type": "Text",
+          "localized": true,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "keyAmenities",
+          "name": "Key Amenities",
+          "type": "Array",
+          "localized": true,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false,
+          "items": {
+            "type": "Symbol",
+            "validations": [
+            ]
+          }
+        },
+        {
+          "id": "heroImage",
+          "name": "Hero Image",
+          "type": "Link",
+          "localized": true,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false,
+          "linkType": "Asset"
+        },
+        {
+          "id": "roomImages",
+          "name": "Room Images",
+          "type": "Array",
+          "localized": true,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false,
+          "items": {
+            "type": "Link",
+            "validations": [
+            ],
+            "linkType": "Asset"
+          }
+        }
+      ]
+    }
+  ],
+  "tags": [
+  ],
+  "editorInterfaces": [
+    {
+      "sys": {
+        "id": "default",
+        "type": "EditorInterface",
+        "space": {
+          "sys": {
+            "id": "nhsxjzumacj6",
+            "type": "Link",
+            "linkType": "Space"
+          }
+        },
+        "version": 1,
+        "createdAt": "2025-11-09T00:31:33.210Z",
+        "createdBy": {
+          "sys": {
+            "id": "2OKyzSJzpNydSbviPxbSrN",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "updatedAt": "2025-11-09T00:31:33.210Z",
+        "updatedBy": {
+          "sys": {
+            "id": "2OKyzSJzpNydSbviPxbSrN",
+            "type": "Link",
+            "linkType": "User"
+          }
+        },
+        "contentType": {
+          "sys": {
+            "id": "hotelProperty",
+            "type": "Link",
+            "linkType": "ContentType"
+          }
+        },
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        }
+      },
+      "controls": [
+        {
+          "fieldId": "propertyName"
+        },
+        {
+          "fieldId": "heroHeadline"
+        },
+        {
+          "fieldId": "location"
+        },
+        {
+          "fieldId": "roomType"
+        },
+        {
+          "fieldId": "roomDescription"
+        },
+        {
+          "fieldId": "neighborhoodVibe"
+        },
+        {
+          "fieldId": "signatureExperience"
+        },
+        {
+          "fieldId": "keyAmenities"
+        },
+        {
+          "fieldId": "heroImage"
+        },
+        {
+          "fieldId": "roomImages"
+        }
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "metadata": {
+        "tags": [
+        ],
+        "concepts": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "nhsxjzumacj6"
+          }
+        },
+        "id": "HIEwPR99qlEPlqCotuTNR",
+        "type": "Entry",
+        "createdAt": "2025-11-09T00:31:49.548Z",
+        "updatedAt": "2026-01-02T18:28:07.080Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 97,
+        "publishedAt": "2025-12-08T18:37:10.478Z",
+        "firstPublishedAt": "2025-11-09T00:31:55.315Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2OKyzSJzpNydSbviPxbSrN"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2OKyzSJzpNydSbviPxbSrN"
+          }
+        },
+        "publishedCounter": 16,
+        "version": 106,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2OKyzSJzpNydSbviPxbSrN"
+          }
+        },
+        "fieldStatus": {
+          "*": {
+            "en-US": "changed"
+          }
+        },
+        "automationTags": [
+        ],
+        "contentType": {
+          "sys": {
+            "type": "Link",
+            "linkType": "ContentType",
+            "id": "hotelProperty"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/nhsxjzumacj6/environments/master/entries/HIEwPR99qlEPlqCotuTNR"
+      },
+      "fields": {
+        "propertyName": {
+          "en-US": "The Maritime Denver"
+        },
+        "heroHeadline": {
+          "en-US": "Where Rocky Mountain elevation meets elevated hospitality"
+        },
+        "location": {
+          "en-US": "Downtown Denver, walking distance to Union Station"
+        },
+        "roomType": {
+          "en-US": "Skyline Suite"
+        },
+        "roomDescription": {
+          "en-US": "Floor-to-ceiling windows frame panoramic views of the Front Range. This 450-square-foot retreat features a king bed, spa-inspired bathroom, and workspace designed for the modern traveler. Thoughtfully curated details include locally sourced bath amenities, premium linens, and a Bluetooth sound system for your favorite playlists."
+        },
+        "neighborhoodVibe": {
+          "en-US": "In the heart of LoDo, you're steps from craft breweries, the Denver Performing Arts Complex, and Coors Field. The 16th Street Mall's free shuttle connects you to the entire downtown corridor, while Union Station's restaurants and bars create an energetic dining scene just outside your door."
+        },
+        "signatureExperience": {
+          "en-US": "Start your day with our complimentary coffee service featuring beans from local roasters, then explore Denver's 300 days of sunshine. Our concierge team curates personalized itineraries featuring hidden gems from Red Rocks to Rocky Mountain National Park."
+        },
+        "keyAmenities": {
+          "en-US": [
+            "Rooftop bar with mountain views",
+            "Complimentary bike rentals",
+            "High-speed WiFi throughout",
+            "24-Hour Fitness Center"
+          ]
+        },
+        "heroImage": {
+          "en-US": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Asset",
+              "id": "1T35dMqFCR2CyLJcOiYShc"
+            }
+          }
+        },
+        "roomImages": {
+          "en-US": [
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Asset",
+                "id": "6D5pPmwgDrZbCYbxTS1TAQ"
+              }
+            },
+            {
+              "sys": {
+                "type": "Link",
+                "linkType": "Asset",
+                "id": "2cnACpUXsg8FEWWkG0nY9E"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "assets": [
+    {
+      "metadata": {
+        "tags": [
+        ],
+        "concepts": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "nhsxjzumacj6"
+          }
+        },
+        "id": "1T35dMqFCR2CyLJcOiYShc",
+        "type": "Asset",
+        "createdAt": "2025-11-09T00:37:48.428Z",
+        "updatedAt": "2025-11-09T00:38:08.541Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 3,
+        "publishedAt": "2025-11-09T00:38:08.541Z",
+        "firstPublishedAt": "2025-11-09T00:38:08.541Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2OKyzSJzpNydSbviPxbSrN"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2OKyzSJzpNydSbviPxbSrN"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 4,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2OKyzSJzpNydSbviPxbSrN"
+          }
+        },
+        "fieldStatus": {
+          "*": {
+            "en-US": "published"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/nhsxjzumacj6/environments/master/assets/1T35dMqFCR2CyLJcOiYShc"
+      },
+      "fields": {
+        "title": {
+          "en-US": "Hotel Image"
+        },
+        "description": {
+          "en-US": ""
+        },
+        "file": {
+          "en-US": {
+            "url": "//images.ctfassets.net/nhsxjzumacj6/1T35dMqFCR2CyLJcOiYShc/4320271e31df5f37f42ffda2ba28b26f/Hotel_Image.jpeg",
+            "details": {
+              "size": 9375452,
+              "image": {
+                "width": 6000,
+                "height": 2444
+              }
+            },
+            "fileName": "Hotel Image.jpeg",
+            "contentType": "image/jpeg"
+          }
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ],
+        "concepts": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "nhsxjzumacj6"
+          }
+        },
+        "id": "6D5pPmwgDrZbCYbxTS1TAQ",
+        "type": "Asset",
+        "createdAt": "2025-11-09T00:39:03.843Z",
+        "updatedAt": "2025-11-09T00:39:20.779Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 3,
+        "publishedAt": "2025-11-09T00:39:20.779Z",
+        "firstPublishedAt": "2025-11-09T00:39:20.779Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2OKyzSJzpNydSbviPxbSrN"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2OKyzSJzpNydSbviPxbSrN"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 4,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2OKyzSJzpNydSbviPxbSrN"
+          }
+        },
+        "fieldStatus": {
+          "*": {
+            "en-US": "published"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/nhsxjzumacj6/environments/master/assets/6D5pPmwgDrZbCYbxTS1TAQ"
+      },
+      "fields": {
+        "title": {
+          "en-US": "Hotel Room Stock Photo (1)"
+        },
+        "description": {
+          "en-US": ""
+        },
+        "file": {
+          "en-US": {
+            "url": "//images.ctfassets.net/nhsxjzumacj6/6D5pPmwgDrZbCYbxTS1TAQ/b903060ff0ebecc71ee81a6eea3f03dd/Hotel_Room_Stock_Photo__1_.jpeg",
+            "details": {
+              "size": 9483890,
+              "image": {
+                "width": 6500,
+                "height": 4289
+              }
+            },
+            "fileName": "Hotel Room Stock Photo (1).jpeg",
+            "contentType": "image/jpeg"
+          }
+        }
+      }
+    },
+    {
+      "metadata": {
+        "tags": [
+        ],
+        "concepts": [
+        ]
+      },
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "nhsxjzumacj6"
+          }
+        },
+        "id": "2cnACpUXsg8FEWWkG0nY9E",
+        "type": "Asset",
+        "createdAt": "2025-11-09T00:39:27.157Z",
+        "updatedAt": "2025-11-09T00:39:41.947Z",
+        "environment": {
+          "sys": {
+            "id": "master",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 3,
+        "publishedAt": "2025-11-09T00:39:41.947Z",
+        "firstPublishedAt": "2025-11-09T00:39:41.947Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2OKyzSJzpNydSbviPxbSrN"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2OKyzSJzpNydSbviPxbSrN"
+          }
+        },
+        "publishedCounter": 1,
+        "version": 4,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2OKyzSJzpNydSbviPxbSrN"
+          }
+        },
+        "fieldStatus": {
+          "*": {
+            "en-US": "published"
+          }
+        },
+        "urn": "crn:contentful:::content:spaces/nhsxjzumacj6/environments/master/assets/2cnACpUXsg8FEWWkG0nY9E"
+      },
+      "fields": {
+        "title": {
+          "en-US": "Hotel Room Stock Photo (2)"
+        },
+        "description": {
+          "en-US": ""
+        },
+        "file": {
+          "en-US": {
+            "url": "//images.ctfassets.net/nhsxjzumacj6/2cnACpUXsg8FEWWkG0nY9E/9f02231aba0169ed11c3b7c23f92f3a4/Hotel_Room_Stock_Photo__2_.jpeg",
+            "details": {
+              "size": 4326607,
+              "image": {
+                "width": 6000,
+                "height": 4002
+              }
+            },
+            "fileName": "Hotel Room Stock Photo (2).jpeg",
+            "contentType": "image/jpeg"
+          }
+        }
+      }
+    }
+  ],
+  "locales": [
+    {
+      "name": "English (United States)",
+      "code": "en-US",
+      "fallbackCode": null,
+      "default": true,
+      "contentManagementApi": true,
+      "contentDeliveryApi": true,
+      "optional": false,
+      "sys": {
+        "type": "Locale",
+        "id": "17rVV6mf1JTr536xJTRT0q",
+        "version": 1,
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "nhsxjzumacj6"
+          }
+        },
+        "environment": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Environment",
+            "id": "master",
+            "uuid": "5b04fcda-1ccd-4710-9a64-1767cd712eae"
+          }
+        },
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2OKyzSJzpNydSbviPxbSrN"
+          }
+        },
+        "createdAt": "2025-11-09T00:22:48Z",
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2OKyzSJzpNydSbviPxbSrN"
+          }
+        },
+        "updatedAt": "2025-11-09T00:22:48Z"
+      }
+    }
+  ],
+  "webhooks": [
+  ],
+  "roles": [
+    {
+      "name": "Author",
+      "description": "Allows editing of content",
+      "policies": [
+        {
+          "effect": "allow",
+          "actions": [
+            "create"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Entry"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "read"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Entry"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "update"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Entry"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "create"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Asset"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "read"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Asset"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "update"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Asset"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "permissions": {
+        "ContentModel": [
+          "read"
+        ],
+        "Settings": [
+        ],
+        "ContentDelivery": [
+        ],
+        "Environments": [
+        ],
+        "EnvironmentAliases": [
+        ],
+        "Tags": [
+        ]
+      },
+      "sys": {
+        "type": "Role",
+        "id": "17NxKy34AXFu5O9WW01qtU",
+        "version": 0,
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "nhsxjzumacj6"
+          }
+        },
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2OKyzSJzpNydSbviPxbSrN"
+          }
+        },
+        "createdAt": "2025-11-09T00:22:48Z",
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2OKyzSJzpNydSbviPxbSrN"
+          }
+        },
+        "updatedAt": "2025-11-09T00:22:48Z"
+      }
+    },
+    {
+      "name": "Editor",
+      "description": "Allows editing, publishing and archiving of content",
+      "policies": [
+        {
+          "effect": "allow",
+          "actions": "all",
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Entry"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": "all",
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Asset"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "permissions": {
+        "ContentModel": [
+          "read"
+        ],
+        "Settings": [
+        ],
+        "ContentDelivery": [
+        ],
+        "Environments": [
+        ],
+        "EnvironmentAliases": [
+        ],
+        "Tags": [
+        ]
+      },
+      "sys": {
+        "type": "Role",
+        "id": "17OjZabd14PpLES7Z9rGIS",
+        "version": 0,
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "nhsxjzumacj6"
+          }
+        },
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2OKyzSJzpNydSbviPxbSrN"
+          }
+        },
+        "createdAt": "2025-11-09T00:22:48Z",
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2OKyzSJzpNydSbviPxbSrN"
+          }
+        },
+        "updatedAt": "2025-11-09T00:22:48Z"
+      }
+    },
+    {
+      "name": "Freelancer",
+      "description": "Allows only editing of content they created themselves",
+      "policies": [
+        {
+          "effect": "allow",
+          "actions": [
+            "create"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Entry"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "create"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Asset"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "read"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Entry"
+                ]
+              },
+              {
+                "equals": [
+                  {
+                    "doc": "sys.createdBy.sys.id"
+                  },
+                  "User.current()"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "update"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Entry"
+                ]
+              },
+              {
+                "equals": [
+                  {
+                    "doc": "sys.createdBy.sys.id"
+                  },
+                  "User.current()"
+                ]
+              },
+              {
+                "paths": [
+                  {
+                    "doc": "fields.%.%"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "delete"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Entry"
+                ]
+              },
+              {
+                "equals": [
+                  {
+                    "doc": "sys.createdBy.sys.id"
+                  },
+                  "User.current()"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "read"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Asset"
+                ]
+              },
+              {
+                "equals": [
+                  {
+                    "doc": "sys.createdBy.sys.id"
+                  },
+                  "User.current()"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "update"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Asset"
+                ]
+              },
+              {
+                "equals": [
+                  {
+                    "doc": "sys.createdBy.sys.id"
+                  },
+                  "User.current()"
+                ]
+              },
+              {
+                "paths": [
+                  {
+                    "doc": "fields.%.%"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "delete"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Asset"
+                ]
+              },
+              {
+                "equals": [
+                  {
+                    "doc": "sys.createdBy.sys.id"
+                  },
+                  "User.current()"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "permissions": {
+        "ContentModel": [
+          "read"
+        ],
+        "Settings": [
+        ],
+        "ContentDelivery": [
+        ],
+        "Environments": [
+        ],
+        "EnvironmentAliases": [
+        ],
+        "Tags": [
+        ]
+      },
+      "sys": {
+        "type": "Role",
+        "id": "17PjL6DSd4cr9GPzOZTeRU",
+        "version": 0,
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "nhsxjzumacj6"
+          }
+        },
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2OKyzSJzpNydSbviPxbSrN"
+          }
+        },
+        "createdAt": "2025-11-09T00:22:48Z",
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2OKyzSJzpNydSbviPxbSrN"
+          }
+        },
+        "updatedAt": "2025-11-09T00:22:48Z"
+      }
+    },
+    {
+      "name": "Translator",
+      "description": "Allows editing of localized fields in the specified language",
+      "policies": [
+        {
+          "effect": "allow",
+          "actions": [
+            "read"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Entry"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "read"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Asset"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "update"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Entry"
+                ]
+              },
+              {
+                "paths": [
+                  {
+                    "doc": "fields.%.%"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "effect": "allow",
+          "actions": [
+            "update"
+          ],
+          "constraint": {
+            "and": [
+              {
+                "equals": [
+                  {
+                    "doc": "sys.type"
+                  },
+                  "Asset"
+                ]
+              },
+              {
+                "paths": [
+                  {
+                    "doc": "fields.%.%"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "permissions": {
+        "ContentModel": [
+          "read"
+        ],
+        "Settings": [
+        ],
+        "ContentDelivery": [
+        ],
+        "Environments": [
+        ],
+        "EnvironmentAliases": [
+        ],
+        "Tags": [
+        ]
+      },
+      "sys": {
+        "type": "Role",
+        "id": "17PU92C9omE1s0JlWLnhCK",
+        "version": 0,
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "nhsxjzumacj6"
+          }
+        },
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2OKyzSJzpNydSbviPxbSrN"
+          }
+        },
+        "createdAt": "2025-11-09T00:22:48Z",
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2OKyzSJzpNydSbviPxbSrN"
+          }
+        },
+        "updatedAt": "2025-11-09T00:22:48Z"
+      }
+    }
+  ]
+}

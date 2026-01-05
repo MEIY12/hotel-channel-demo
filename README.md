@@ -33,6 +33,26 @@ npm install
 
 2. **Set up Contentful:**
 
+**Option A: Quick Import (Recommended)** ⚡
+
+This repo includes a ready-to-use Contentful export file (`contentful-space-export.json`) with the content model and sample data already configured.
+
+```bash
+# Install Contentful CLI globally
+npm install -g contentful-cli
+
+# Login to Contentful
+contentful login
+
+# Create a new space (or use an existing one)
+contentful space create --name "Hotel Channel Demo"
+
+# Import the content (replace YOUR_SPACE_ID with your actual space ID)
+contentful space import --space-id YOUR_SPACE_ID --content-file contentful-space-export.json
+```
+
+**Option B: Manual Setup**
+
 Follow the detailed instructions in `CONTENTFUL_SETUP.md` to:
 - Create your Contentful space
 - Set up the Hotel Property content model
@@ -163,24 +183,25 @@ The app includes Contentful Live Preview SDK integration:
 ## 📁 Project Structure
 
 ```
-src/
-├── app/
-│   ├── globals.css          # Global styles and fonts
-│   ├── layout.tsx           # Root layout
-│   └── page.tsx             # Main page with channel routing
-├── components/
-│   ├── ChannelSwitcher.tsx  # Channel navigation
-│   └── channels/
-│       ├── LuxuryView.tsx
-│       ├── CorporateView.tsx
-│       ├── OTAView.tsx
-│       ├── MobileView.tsx
-│       ├── EmailView.tsx
-│       └── KioskView.tsx
-├── lib/
-│   └── contentful.ts        # Contentful client setup
-└── types/
-    └── contentful.ts        # TypeScript definitions
+├── contentful-space-export.json  # Pre-configured Contentful content (import this!)
+├── src/
+│   ├── app/
+│   │   ├── globals.css           # Global styles and fonts
+│   │   ├── layout.tsx            # Root layout
+│   │   └── page.tsx              # Main page with channel routing
+│   ├── components/
+│   │   ├── ChannelSwitcher.tsx   # Channel navigation
+│   │   └── channels/
+│   │       ├── LuxuryView.tsx
+│   │       ├── CorporateView.tsx
+│   │       ├── OTAView.tsx
+│   │       ├── MobileView.tsx
+│   │       ├── EmailView.tsx
+│   │       └── KioskView.tsx
+│   ├── lib/
+│   │   └── contentful.ts         # Contentful client setup
+│   └── types/
+│       └── contentful.ts         # TypeScript definitions
 ```
 
 ## 🎬 Demo Script
@@ -225,9 +246,26 @@ This demo teaches:
 2. Modify `HotelPropertyFields` in `src/types/contentful.ts`
 3. Update channel components to use new fields
 
+## 📦 Contentful Export File
+
+This repository includes `contentful-space-export.json` which contains everything you need:
+
+| What's Included | Details |
+|-----------------|---------|
+| **Content Type** | `hotelProperty` with 10 fields (text, media, arrays) |
+| **Sample Entry** | "The Maritime Denver" hotel with complete content |
+| **Media Assets** | Hero image and room photos |
+| **Locale** | English (US) configured as default |
+
+To import, use the Contentful CLI:
+```bash
+contentful space import --space-id YOUR_SPACE_ID --content-file contentful-space-export.json
+```
+
 ## 📚 Additional Resources
 
 - [Contentful Documentation](https://www.contentful.com/developers/docs/)
+- [Contentful CLI Reference](https://www.contentful.com/developers/docs/tutorials/cli/)
 - [Live Preview SDK Guide](https://www.contentful.com/developers/docs/tutorials/general/live-preview/)
 - [Next.js Documentation](https://nextjs.org/docs)
 - [TailwindCSS Documentation](https://tailwindcss.com/docs)

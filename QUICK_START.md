@@ -1,6 +1,6 @@
 # Quick Start Guide
 
-Get the Contentful Channel Demo running in 15 minutes.
+Get the Contentful Channel Demo running in 5 minutes.
 
 ## Prerequisites Checklist
 
@@ -8,69 +8,45 @@ Get the Contentful Channel Demo running in 15 minutes.
 - [ ] A Contentful account (sign up free at contentful.com)
 - [ ] Basic terminal/command line knowledge
 
-## 5-Step Setup
+## 4-Step Setup (Using Pre-configured Export)
 
-### Step 1: Install Dependencies (2 minutes)
+This repo includes a `contentful-space-export.json` file with the content model and sample data ready to import!
+
+### Step 1: Install Dependencies (1 minute)
 
 ```bash
 npm install
+npm install -g contentful-cli
 ```
 
-### Step 2: Create Contentful Content Type (5 minutes)
+### Step 2: Import Content to Contentful (2 minutes)
 
-1. Log into Contentful
-2. Create a new space or use existing
-3. Go to **Content model** → **Add content type**
-4. Name: `Hotel Property`, API ID: `hotelProperty`
-5. Add these fields (click **Add field** for each):
+```bash
+# Login to Contentful (opens browser for auth)
+contentful login
 
-| Field Name | Field ID | Type | Settings |
-|------------|----------|------|----------|
-| Property Name | `propertyName` | Short text | Entry title |
-| Hero Headline | `heroHeadline` | Short text | - |
-| Location | `location` | Short text | - |
-| Room Type | `roomType` | Short text | - |
-| Room Description | `roomDescription` | Long text | - |
-| Neighborhood Vibe | `neighborhoodVibe` | Long text | - |
-| Signature Experience | `signatureExperience` | Long text | - |
-| Key Amenities | `keyAmenities` | Short text, list | - |
-| Hero Image | `heroImage` | Media (single) | Images only |
-| Room Images | `roomImages` | Media (many) | Images only |
+# Create a new space
+contentful space create --name "Hotel Channel Demo"
+# Note the Space ID that's returned!
 
-6. Click **Save**
-
-### Step 3: Add Sample Content (3 minutes)
-
-1. Go to **Content** → **Add entry** → **Hotel Property**
-2. Fill in the sample data below
-3. Upload 1 hero image and 2-3 room images (use stock photos from Unsplash)
-4. Click **Publish**
-
-**Sample Data:**
-
-```
-Property Name: The Maritime Denver
-Hero Headline: Where Rocky Mountain elevation meets elevated hospitality
-Location: Downtown Denver, walking distance to Union Station
-Room Type: Skyline Suite
-Room Description: Floor-to-ceiling windows frame panoramic views of the Front Range. This 450-square-foot retreat features a king bed, spa-inspired bathroom, and workspace designed for the modern traveler.
-Neighborhood Vibe: In the heart of LoDo, you're steps from craft breweries, the Denver Performing Arts Complex, and Coors Field.
-Signature Experience: Start your day with our complimentary coffee service featuring beans from local roasters, then explore Denver's 300 days of sunshine.
-Key Amenities:
-  - Rooftop bar with mountain views
-  - Farm-to-table restaurant
-  - 24-hour fitness center
-  - Complimentary bike rentals
+# Import the pre-configured content
+contentful space import --space-id YOUR_SPACE_ID --content-file contentful-space-export.json
 ```
 
-### Step 4: Configure Environment Variables (2 minutes)
+This imports:
+- ✅ Hotel Property content type (fully configured)
+- ✅ Sample hotel entry ("The Maritime Denver")
+- ✅ Sample images
+
+### Step 3: Configure Environment Variables (1 minute)
 
 1. Copy the example file:
 ```bash
 cp .env.local.example .env.local
 ```
 
-2. Get your Contentful credentials:
+2. Get your Contentful credentials from the web UI:
+   - Go to [app.contentful.com](https://app.contentful.com) → Your space
    - **Space ID:** Settings → General settings
    - **Access Token:** Settings → API keys → Content Delivery API
    - **Preview Token:** Settings → API keys → Content Preview API
@@ -84,7 +60,7 @@ NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN=your_preview_token_here
 NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT=master
 ```
 
-### Step 5: Run the App (1 minute)
+### Step 4: Run the App (1 minute)
 
 ```bash
 npm run dev
@@ -93,6 +69,18 @@ npm run dev
 Open [http://localhost:3000](http://localhost:3000)
 
 **You should see:** Your hotel property rendered in the Luxury channel view! 🎉
+
+---
+
+## Alternative: Manual Setup
+
+If you prefer to create the content model manually (great for learning!), see `CONTENTFUL_SETUP.md` for step-by-step instructions to:
+
+1. Create the Hotel Property content type with all fields
+2. Upload your own images
+3. Create sample content from scratch
+
+---
 
 ## Quick Feature Tour
 
@@ -280,6 +268,7 @@ NEXT_PUBLIC_CONTENTFUL_PREVIEW=         # true/false
 - `next.config.js` - Next.js configuration
 - `tailwind.config.ts` - Styling configuration
 - `.env.local` - Your local environment variables (never commit!)
+- `contentful-space-export.json` - Pre-configured Contentful content (import this!)
 
 ---
 
