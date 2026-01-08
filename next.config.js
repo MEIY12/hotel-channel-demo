@@ -23,9 +23,9 @@ const nextConfig = {
             value: 'noindex, nofollow, noarchive, nosnippet',
           },
           {
-            // Prevent clickjacking
-            key: 'X-Frame-Options',
-            value: 'DENY',
+            // Allow framing only from Contentful for Live Preview
+            key: 'Content-Security-Policy',
+            value: "frame-ancestors 'self' https://app.contentful.com https://*.contentful.com",
           },
           {
             // Prevent MIME type sniffing
