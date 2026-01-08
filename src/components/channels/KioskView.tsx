@@ -1,6 +1,6 @@
 'use client';
 
-import { HotelPropertyEntry } from '@/types/contentful';
+import { HotelPropertyEntry, HotelPropertyFields } from '@/types/contentful';
 import { useContentfulLiveUpdates } from '@contentful/live-preview/react';
 import Image from 'next/image';
 
@@ -9,8 +9,8 @@ interface KioskViewProps {
 }
 
 export default function KioskView({ hotelData }: KioskViewProps) {
-  const updatedData = useContentfulLiveUpdates(hotelData);
-  const fields = updatedData.fields;
+  const updatedData = useContentfulLiveUpdates(hotelData) as HotelPropertyEntry;
+  const fields = updatedData.fields as HotelPropertyFields;
 
   const heroImageUrl = fields.heroImage?.fields?.file?.url
     ? `https:${fields.heroImage.fields.file.url}?w=1920&h=1080&fit=fill`

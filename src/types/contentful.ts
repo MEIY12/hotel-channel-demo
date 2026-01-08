@@ -1,4 +1,4 @@
-import { Entry, Asset } from 'contentful';
+import { Entry, Asset, EntrySkeletonType } from 'contentful';
 
 export interface HotelPropertyFields {
   propertyName: string;
@@ -13,7 +13,12 @@ export interface HotelPropertyFields {
   roomImages: Asset[];
 }
 
-export type HotelPropertyEntry = Entry<HotelPropertyFields>;
+export interface HotelPropertySkeleton extends EntrySkeletonType {
+  contentTypeId: 'hotelProperty';
+  fields: HotelPropertyFields;
+}
+
+export type HotelPropertyEntry = Entry<HotelPropertySkeleton, undefined, string>;
 
 export type ChannelType = 
   | 'luxury'
