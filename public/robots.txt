@@ -1,0 +1,25 @@
+# Disallow all crawlers from indexing this site
+User-agent: *
+Disallow: /
+
+# Block specific crawlers explicitly
+User-agent: Googlebot
+Disallow: /
+
+User-agent: Bingbot
+Disallow: /
+
+User-agent: DuckDuckBot
+Disallow: /
+
+User-agent: Slurp
+Disallow: /
+
+User-agent: Baiduspider
+Disallow: /
+
+User-agent: YandexBot
+Disallow: /
+
+# No sitemap - we don't want to be indexed
+
