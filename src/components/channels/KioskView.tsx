@@ -45,6 +45,13 @@ export default function KioskView({ hotelData }: KioskViewProps) {
             >
               {fields.propertyName}
             </h1>
+            <p 
+              className="text-2xl text-amber-400 font-light mb-8 italic"
+              data-contentful-entry-id={updatedData.sys.id}
+              data-contentful-field-id="heroHeadline"
+            >
+              {fields.heroHeadline}
+            </p>
             <div className="w-20 h-1 bg-amber-500 mb-8"></div>
           </div>
 

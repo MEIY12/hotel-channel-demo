@@ -24,7 +24,7 @@ const config: Config = {
           light: '#F3F4F6',
         },
         ota: {
-          primary: '#003B95',
+          primary: '#15803d',
           accent: '#FEBB02',
           success: '#00AA6C',
         },

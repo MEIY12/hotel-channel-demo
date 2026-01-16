@@ -35,6 +35,13 @@ export default function EmailView({ hotelData }: EmailViewProps) {
           >
             {fields.propertyName}
           </div>
+          <div 
+            className="mt-4 text-gray-600 font-medium italic"
+            data-contentful-entry-id={updatedData.sys.id}
+            data-contentful-field-id="heroHeadline"
+          >
+            {fields.heroHeadline}
+          </div>
         </div>
 
         {/* Email Content */}

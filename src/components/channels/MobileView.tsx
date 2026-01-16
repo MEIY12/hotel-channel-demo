@@ -71,6 +71,13 @@ export default function MobileView({ hotelData }: MobileViewProps) {
               {fields.propertyName}
             </h2>
             <p 
+              className="text-blue-600 font-medium text-sm mb-1"
+              data-contentful-entry-id={updatedData.sys.id}
+              data-contentful-field-id="heroHeadline"
+            >
+              {fields.heroHeadline}
+            </p>
+            <p 
               className="text-gray-600 text-sm flex items-center mt-1"
               data-contentful-entry-id={updatedData.sys.id}
               data-contentful-field-id="location"

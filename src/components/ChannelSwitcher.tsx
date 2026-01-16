@@ -8,13 +8,13 @@ const channels: ChannelConfig[] = [
   {
     id: 'luxury',
     name: 'Luxury Brand',
-    description: 'Marriott Bonvoy Style',
+    description: 'Hotel Homepage',
     icon: '✨',
   },
   {
     id: 'ota',
     name: 'OTA Partner',
-    description: 'Booking.com Style',
+    description: 'Online Travel Agency',
     icon: '🌐',
   },
   {

@@ -48,6 +48,13 @@ export default function OTAView({ hotelData }: OTAViewProps) {
                     {fields.propertyName}
                   </h1>
                   <p 
+                    className="text-lg text-ota-primary font-medium mb-2"
+                    data-contentful-entry-id={updatedData.sys.id}
+                    data-contentful-field-id="heroHeadline"
+                  >
+                    {fields.heroHeadline}
+                  </p>
+                  <p 
                     className="text-gray-600"
                     data-contentful-entry-id={updatedData.sys.id}
                     data-contentful-field-id="location"
@@ -55,7 +62,7 @@ export default function OTAView({ hotelData }: OTAViewProps) {
                     📍 {fields.location}
                   </p>
                 </div>
-                <button className="text-ota-primary border border-ota-primary px-4 py-2 rounded hover:bg-blue-50 transition-colors">
+                <button className="text-ota-primary border border-ota-primary px-4 py-2 rounded hover:bg-green-50 transition-colors">
                   ♡ Save
                 </button>
               </div>
@@ -162,7 +169,7 @@ export default function OTAView({ hotelData }: OTAViewProps) {
                     <div className="text-sm text-gray-500 line-through">$299</div>
                     <div className="text-3xl font-bold text-gray-900">$249</div>
                     <div className="text-xs text-gray-500">per night</div>
-                    <button className="mt-3 bg-ota-primary text-white px-6 py-3 rounded font-semibold hover:bg-blue-700 transition-colors">
+                    <button className="mt-3 bg-ota-primary text-white px-6 py-3 rounded font-semibold hover:bg-green-700 transition-colors">
                       Reserve
                     </button>
                   </div>
