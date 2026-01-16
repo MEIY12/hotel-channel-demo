@@ -190,7 +190,7 @@ A complete Next.js application demonstrating Contentful's channel-agnostic conte
 ## Sample Content Provided
 
 Five complete hotel property examples:
-1. **The Maritime Denver** - Urban boutique (primary example)
+1. **The Avalon Denver** - Urban boutique (primary example)
 2. **Coastal Haven Resort** - Beach resort
 3. **Aspen Ridge Mountain Lodge** - Ski resort
 4. **Nexus Business Suites** - Business hotel

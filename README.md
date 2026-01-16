@@ -1,4 +1,4 @@
-# Contentful Channel Demo - The Maritime Denver
+# Contentful Channel Demo - The Avalon Denver
 
 A comprehensive Next.js application demonstrating Contentful's channel-agnostic content management capabilities by rendering the same hotel property content across 6 different channel experiences.
 
@@ -253,7 +253,7 @@ This repository includes `contentful-space-export.json` which contains everythin
 | What's Included | Details |
 |-----------------|---------|
 | **Content Type** | `hotelProperty` with 10 fields (text, media, arrays) |
-| **Sample Entry** | "The Maritime Denver" hotel with complete content |
+| **Sample Entry** | "The Avalon Denver" hotel with complete content |
 | **Media Assets** | Hero image and room photos |
 | **Locale** | English (US) configured as default |
 

@@ -2,10 +2,10 @@
 
 Use this content when creating entries in Contentful. You can create multiple properties to show variety.
 
-## Property 1: The Maritime Denver (Urban Boutique)
+## Property 1: The Avalon Denver (Urban Boutique)
 
 ```
-Property Name: The Maritime Denver
+Property Name: The Avalon Denver
 
 Hero Headline: Where Rocky Mountain elevation meets elevated hospitality
 

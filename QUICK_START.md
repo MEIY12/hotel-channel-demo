@@ -35,7 +35,7 @@ contentful space import --space-id YOUR_SPACE_ID --content-file contentful-space
 
 This imports:
 - ✅ Hotel Property content type (fully configured)
-- ✅ Sample hotel entry ("The Maritime Denver")
+- ✅ Sample hotel entry ("The Avalon Denver")
 - ✅ Sample images
 
 ### Step 3: Configure Environment Variables (1 minute)
