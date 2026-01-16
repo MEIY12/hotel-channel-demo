@@ -53,7 +53,7 @@ Replace `YOUR_SPACE_ID` with your actual space ID from Step 3.
 
 This will import:
 - ✅ The **Hotel Property** content type with all fields configured
-- ✅ A sample entry for **"The Maritime Denver"** hotel
+- ✅ A sample entry for **"The Avalon Denver"** hotel
 - ✅ Sample images (hero image and room photos)
 
 ### Step 5: Get Your API Keys
@@ -198,7 +198,7 @@ Before creating content, upload some images:
 1. Go to **Media** in the top navigation
 2. Click **Add asset** → **Single asset**
 3. Upload a hero image (landscape orientation recommended, at least 1920x1080px)
-4. Title it "Maritime Denver Hero"
+4. Title it "Avalon Denver Hero"
 5. Repeat for 3-4 additional room images
 
 **Image Tips:**
@@ -212,10 +212,10 @@ Before creating content, upload some images:
 2. Click **Add entry** → **Hotel Property**
 3. Fill in the sample data below
 
-### Sample Data: The Maritime Denver
+### Sample Data: The Avalon Denver
 
 ```
-Property Name: The Maritime Denver
+Property Name: The Avalon Denver
 
 Hero Headline: Where Rocky Mountain elevation meets elevated hospitality
 

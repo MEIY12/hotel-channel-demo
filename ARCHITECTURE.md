@@ -394,7 +394,7 @@ if (!hotelData) {
 // Test individual components
 test('LuxuryView renders property name', () => {
   render(<LuxuryView hotelData={mockData} />);
-  expect(screen.getByText('The Maritime Denver')).toBeInTheDocument();
+  expect(screen.getByText('The Avalon Denver')).toBeInTheDocument();
 });
 ```
 

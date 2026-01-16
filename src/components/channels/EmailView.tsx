@@ -133,7 +133,7 @@ export default function EmailView({ hotelData }: EmailViewProps) {
           <div className="border-t border-gray-100 pt-6">
             <p className="text-gray-600 text-sm mb-2 font-semibold">Questions?</p>
             <p className="text-gray-500 text-sm">
-              Contact our concierge at <a href="#" className="text-blue-600 underline">concierge@maritimedenver.com</a> or call +1 (303) 555-0192.
+              Contact our concierge at <a href="#" className="text-blue-600 underline">concierge@avalondenver.com</a> or call +1 (303) 555-0192.
             </p>
           </div>
         </div>
