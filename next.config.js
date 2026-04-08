@@ -1,5 +1,10 @@
+const path = require('path');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Avoid picking up a parent directory lockfile as the workspace root (e.g. ~/package-lock.json)
+  outputFileTracingRoot: path.join(__dirname),
+
   images: {
     remotePatterns: [
       {
