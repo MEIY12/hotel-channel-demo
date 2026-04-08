@@ -33,7 +33,7 @@ function HotelPageContent() {
     async function loadData() {
       setLoading(true);
       const data = await getHotelProperty(entryId);
-      setHotelData(data as HotelPropertyEntry);
+      setHotelData(data);
       setLoading(false);
     }
     loadData();

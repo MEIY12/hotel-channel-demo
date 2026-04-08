@@ -1,6 +1,8 @@
 import { Entry, Asset, EntrySkeletonType } from 'contentful';
 
 export interface HotelPropertyFields {
+  /** When true, this entry is preferred for the homepage when no `id` is in the URL. */
+  defaultProperty?: boolean;
   propertyName: string;
   heroHeadline: string;
   location: string;
