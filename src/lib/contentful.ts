@@ -25,6 +25,13 @@ export async function getHotelProperty(entryId?: string) {
   try {
     if (entryId) {
       const entry = await contentfulClient.getEntry(entryId);
+      const ctId = entry.sys.contentType.sys.id;
+      if (ctId !== 'hotelProperty') {
+        console.warn(
+          `getHotelProperty: entry ${entryId} is content type "${ctId}", expected "hotelProperty"`
+        );
+        return null;
+      }
       return entry;
     }
     

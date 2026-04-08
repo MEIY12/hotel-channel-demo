@@ -1,8 +1,8 @@
 'use client';
 
 import { ChannelType, ChannelConfig } from '@/types/contentful';
-import { useRouter } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useState, useEffect, useCallback } from 'react';
 
 const channels: ChannelConfig[] = [
   {
@@ -44,12 +44,18 @@ interface ChannelSwitcherProps {
 
 export default function ChannelSwitcher({ currentChannel, entryId }: ChannelSwitcherProps) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleChannelChange = (channelId: ChannelType) => {
-    router.push(`?channel=${channelId}`);
-    setIsOpen(false);
-  };
+  const handleChannelChange = useCallback(
+    (channelId: ChannelType) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set('channel', channelId);
+      router.push(`?${params.toString()}`);
+      setIsOpen(false);
+    },
+    [router, searchParams]
+  );
 
   const currentChannelConfig = channels.find(ch => ch.id === currentChannel);
 
@@ -80,7 +86,7 @@ export default function ChannelSwitcher({ currentChannel, entryId }: ChannelSwit
     return () => {
       window.removeEventListener('keydown', handleKeyPress);
     };
-  }, []);
+  }, [handleChannelChange]);
 
   return (
     <>
