@@ -173,6 +173,17 @@
             ],
             "linkType": "Asset"
           }
+        },
+        {
+          "id": "defaultProperty",
+          "name": "Default Property",
+          "type": "Boolean",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
         }
       ]
     }

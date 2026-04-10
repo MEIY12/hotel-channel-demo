@@ -13,11 +13,18 @@ import KioskView from '@/components/channels/KioskView';
 import PhoneMockupFrame from '@/components/PhoneMockupFrame';
 import { ContentfulLivePreviewProvider, useContentfulLiveUpdates } from '@contentful/live-preview/react';
 
+/** Entry id from Contentful preview URL, e.g. `?id={entry.sys.id}` or `?entry={entry.sys.id}` */
+function getEntryIdFromSearchParams(searchParams: URLSearchParams): string | undefined {
+  const id = searchParams.get('id')?.trim() || searchParams.get('entry')?.trim();
+  return id || undefined;
+}
+
 function HotelPageContent() {
   const [hotelData, setHotelData] = useState<HotelPropertyEntry | null>(null);
   const [loading, setLoading] = useState(true);
   const searchParams = useSearchParams();
   const channel = (searchParams.get('channel') || 'luxury') as ChannelType;
+  const entryId = getEntryIdFromSearchParams(searchParams);
 
   // Use live updates at the parent level so all channels get fresh data
   const updatedHotelData = useContentfulLiveUpdates(hotelData);
@@ -25,12 +32,12 @@ function HotelPageContent() {
   useEffect(() => {
     async function loadData() {
       setLoading(true);
-      const data = await getHotelProperty();
-      setHotelData(data as HotelPropertyEntry);
+      const data = await getHotelProperty(entryId);
+      setHotelData(data);
       setLoading(false);
     }
     loadData();
-  }, []);
+  }, [entryId]);
 
   if (loading) {
     return (
@@ -49,7 +56,9 @@ function HotelPageContent() {
         <div className="text-center">
           <h1 className="text-2xl font-bold text-red-600">Error Loading Data</h1>
           <p className="mt-2 text-gray-600">
-            Please check your Contentful configuration and ensure you have created a Hotel Property entry.
+            {entryId
+              ? `No Hotel Property entry was found for id “${entryId}”. Check the id in your preview URL or Contentful.`
+              : 'Please check your Contentful configuration and ensure you have created a Hotel Property entry.'}
           </p>
         </div>
       </div>
