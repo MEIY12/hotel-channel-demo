@@ -3,274 +3,286 @@
 import { HotelPropertyEntry, HotelPropertyFields } from '@/types/contentful';
 import { useContentfulLiveUpdates } from '@contentful/live-preview/react';
 import Image from 'next/image';
+import { useState } from 'react';
 
 interface OTAViewProps {
   hotelData: HotelPropertyEntry;
 }
 
+const NAV_ITEMS = [
+  'Home',
+  'Company Resources',
+  'Employee Resources',
+  'Workspaces & Teams',
+  'Company & News',
+];
+
+const TABS = [
+  'Business Resources',
+  'Employee Center',
+  'Departments & Teams',
+  'Company & News',
+];
+
+const QUICK_LINK_STYLES = [
+  { ring: 'ring-emerald-400', icon: '🎧', label: 'Helpdesk' },
+  { ring: 'ring-lime-500', icon: '👥', label: 'Directory' },
+  { ring: 'ring-green-600', icon: '⏱', label: 'Expenses' },
+  { ring: 'ring-yellow-400', icon: '📊', label: 'Reports' },
+  { ring: 'ring-teal-500', icon: '✉️', label: 'Newsletter' },
+  { ring: 'ring-rose-400', icon: '❤️', label: 'Benefits' },
+  { ring: 'ring-orange-400', icon: '❓', label: 'FAQs' },
+  { ring: 'ring-emerald-600', icon: '⭐', label: 'Training' },
+];
+
+const CARD_BLURBS = [
+  'Onboarding resources, policies, and teams that support your first weeks at Jabil.',
+  'Payroll, benefits enrollment, and total rewards information for employees.',
+  'Approved applications, IT support, and productivity tools for daily work.',
+  'Connect with colleagues across sites, functions, and regions worldwide.',
+  'Standard forms, templates, and operational checklists for your role.',
+  'Company policies, safety standards, and compliance guidance.',
+];
+
 export default function OTAView({ hotelData }: OTAViewProps) {
   const updatedData = useContentfulLiveUpdates(hotelData) as HotelPropertyEntry;
   const fields = updatedData.fields as HotelPropertyFields;
+  const [activeTab, setActiveTab] = useState(0);
 
-  const heroImageUrl = fields.heroImage?.fields?.file?.url
-    ? `https:${fields.heroImage.fields.file.url}?w=1200&h=600&fit=fill`
-    : '/placeholder.jpg';
+  const imagePool = [
+    fields.heroImage,
+    ...(fields.roomImages || []),
+  ].filter(Boolean);
 
-  const roomImages = fields.roomImages?.slice(0, 4) || [];
+  const getImageUrl = (index: number) => {
+    const asset = imagePool[index % imagePool.length];
+    const path = asset?.fields?.file?.url;
+    return path ? `https:${path}?w=480&h=320&fit=fill` : null;
+  };
+
+  const amenityCards = fields.keyAmenities?.slice(0, 6) || [];
+  const quickLabels =
+    fields.keyAmenities?.slice(0, 8) ||
+    QUICK_LINK_STYLES.map((item) => item.label);
 
   return (
-    <div className="font-inter pt-14 pb-12 bg-gray-50 min-h-screen">
-      <div className="max-w-7xl mx-auto px-4">
-        {/* Breadcrumb */}
-        <div className="text-sm text-gray-600 mb-4">
-          United States &gt; Colorado &gt; Denver &gt; Downtown
+    <div className="font-inter bg-white min-h-screen text-jabil-navy">
+      {/* Intranet header */}
+      <header className="sticky top-14 z-40 bg-white border-b border-jabil-border shadow-sm">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 h-14 flex items-center justify-between gap-6">
+          <div className="shrink-0">
+            <p
+              className="text-lg font-bold text-jabil-blue leading-none"
+              data-contentful-entry-id={updatedData.sys.id}
+              data-contentful-field-id="propertyName"
+            >
+              {fields.propertyName}
+            </p>
+            <p className="text-[10px] uppercase tracking-widest text-gray-500">The Hub</p>
+          </div>
+          <nav className="hidden lg:flex items-center gap-5 text-sm text-gray-600" aria-label="Intranet">
+            {NAV_ITEMS.map((item) => (
+              <button
+                key={item}
+                type="button"
+                className="hover:text-jabil-blue whitespace-nowrap transition-colors"
+              >
+                {item}
+                {item !== 'Home' && <span className="ml-0.5 text-[10px]">▾</span>}
+              </button>
+            ))}
+          </nav>
+        </div>
+      </header>
+
+      {/* Hero */}
+      <section className="relative bg-[#0c1f3f] text-white overflow-hidden">
+        <div className="absolute inset-y-0 left-0 w-1/4 opacity-90 pointer-events-none">
+          <div className="absolute top-8 left-4 w-24 h-24 rounded-full bg-lime-500/80" />
+          <div className="absolute top-28 left-20 w-32 h-32 rounded-full bg-emerald-700/70" />
+          <div className="absolute bottom-10 left-8 w-20 h-20 rounded-full bg-teal-400/60" />
+        </div>
+        <div className="absolute inset-y-0 right-0 w-1/4 opacity-90 pointer-events-none">
+          <div className="absolute top-12 right-8 w-28 h-28 rounded-full bg-lime-400/75" />
+          <div className="absolute top-32 right-24 w-36 h-36 rounded-full bg-green-800/65" />
+          <div className="absolute bottom-8 right-4 w-24 h-24 rounded-full bg-emerald-500/55" />
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-6">
-          {/* Main Content */}
-          <div className="lg:col-span-2 space-y-4">
-            {/* Header */}
-            <div className="bg-white rounded-lg shadow p-6">
-              <div className="flex items-start justify-between">
-                <div className="flex-1">
-                  <div className="flex items-center space-x-2 mb-2">
-                    <span className="bg-ota-primary text-white px-2 py-1 text-xs rounded">
-                      Hotel
-                    </span>
-                    <div className="text-yellow-400 text-sm">★★★★☆</div>
-                    <span className="text-sm text-gray-600">(428 reviews)</span>
-                  </div>
-                  <h1 
-                    className="text-3xl font-bold text-gray-900 mb-2"
-                    data-contentful-entry-id={updatedData.sys.id}
-                    data-contentful-field-id="propertyName"
-                  >
-                    {fields.propertyName}
-                  </h1>
-                  <p 
-                    className="text-lg text-ota-primary font-medium mb-2"
-                    data-contentful-entry-id={updatedData.sys.id}
-                    data-contentful-field-id="heroHeadline"
-                  >
-                    {fields.heroHeadline}
-                  </p>
-                  <p 
-                    className="text-gray-600"
-                    data-contentful-entry-id={updatedData.sys.id}
-                    data-contentful-field-id="location"
-                  >
-                    📍 {fields.location}
-                  </p>
-                </div>
-                <button className="text-ota-primary border border-ota-primary px-4 py-2 rounded hover:bg-green-50 transition-colors">
-                  ♡ Save
-                </button>
-              </div>
+        <div className="relative max-w-4xl mx-auto px-6 pt-12 pb-8 text-center">
+          <h1 className="text-3xl sm:text-4xl font-bold mb-6">
+            Welcome, Team Member!
+          </h1>
+          <p
+            className="text-jabil-sky text-sm sm:text-base mb-6 max-w-2xl mx-auto"
+            data-contentful-entry-id={updatedData.sys.id}
+            data-contentful-field-id="heroHeadline"
+          >
+            {fields.heroHeadline}
+          </p>
+          <div className="max-w-xl mx-auto">
+            <label className="sr-only" htmlFor="hub-search">Search</label>
+            <div className="flex items-center bg-white rounded-full shadow-md overflow-hidden">
+              <input
+                id="hub-search"
+                type="search"
+                placeholder="Search forms & templates"
+                className="flex-1 px-5 py-3 text-gray-700 text-sm outline-none"
+              />
+              <span className="pr-4 text-gray-400" aria-hidden>🔍</span>
             </div>
+          </div>
+        </div>
 
-            {/* Image Gallery */}
-            <div className="bg-white rounded-lg shadow overflow-hidden">
-              <div className="relative h-96">
-                <Image
-                  src={heroImageUrl}
-                  alt={fields.propertyName}
-                  fill
-                  className="object-cover"
-                />
-                <button className="absolute bottom-4 right-4 bg-white px-4 py-2 rounded shadow hover:shadow-lg transition-shadow">
-                  View all photos
-                </button>
-              </div>
-              {roomImages.length > 0 && (
-                <div className="grid grid-cols-4 gap-2 p-2">
-                  {roomImages.map((image, index) => {
-                    const imageUrl = image.fields?.file?.url
-                      ? `https:${image.fields.file.url}?w=300&h=200&fit=fill`
-                      : '/placeholder.jpg';
-                    return (
-                      <div key={index} className="relative h-24">
-                        <Image
-                          src={imageUrl}
-                          alt={`Room view ${index + 1}`}
-                          fill
-                          className="object-cover rounded"
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
+        {/* Quick links */}
+        <div className="relative max-w-5xl mx-auto px-4 pb-10 grid grid-cols-4 sm:grid-cols-8 gap-3 sm:gap-4">
+          {QUICK_LINK_STYLES.map((style, index) => (
+            <button
+              key={style.label}
+              type="button"
+              className="flex flex-col items-center gap-2 group"
+            >
+              <span
+                className={`w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white flex items-center justify-center text-lg ring-2 ${style.ring} group-hover:scale-105 transition-transform`}
+              >
+                {style.icon}
+              </span>
+              <span className="text-[10px] sm:text-xs text-white/90 text-center leading-tight">
+                {quickLabels[index] || style.label}
+              </span>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      {/* Tabs */}
+      <div className="border-b border-jabil-border bg-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 flex gap-8 overflow-x-auto">
+          {TABS.map((tab, index) => (
+            <button
+              key={tab}
+              type="button"
+              onClick={() => setActiveTab(index)}
+              className={`py-4 text-sm font-medium whitespace-nowrap border-b-2 transition-colors ${
+                activeTab === index
+                  ? 'border-jabil-blue text-jabil-blue'
+                  : 'border-transparent text-gray-500 hover:text-jabil-navy'
+              }`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Tab panels */}
+      <section className="bg-jabil-light py-10 lg:py-14">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          {activeTab === 0 && (
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {amenityCards.map((title, index) => {
+                const img = getImageUrl(index);
+                return (
+                  <article
+                    key={`${title}-${index}`}
+                    className="bg-white rounded-lg shadow-sm border border-jabil-border overflow-hidden flex flex-col"
+                  >
+                    <div className="relative h-40 bg-gray-200">
+                      {img ? (
+                        <Image src={img} alt="" fill className="object-cover" />
+                      ) : (
+                        <div className="absolute inset-0 bg-gradient-to-br from-jabil-blue/20 to-emerald-600/20" />
+                      )}
+                    </div>
+                    <div className="p-5 flex-1 flex flex-col">
+                      <h3 className="text-lg font-bold text-jabil-blue mb-2">{title}</h3>
+                      <p className="text-sm text-gray-600 leading-relaxed flex-1">
+                        {index === 0
+                          ? fields.roomDescription
+                          : index === 2
+                            ? fields.signatureExperience
+                            : CARD_BLURBS[index] || CARD_BLURBS[0]}
+                      </p>
+                      <button
+                        type="button"
+                        className="mt-4 text-sm font-semibold text-jabil-blue hover:text-jabil-blue-dark text-left"
+                      >
+                        Learn more →
+                      </button>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
+          )}
 
-            {/* Features */}
-            <div className="bg-white rounded-lg shadow p-6">
-              <div className="flex flex-wrap gap-3 mb-6">
-                <span className="bg-ota-success text-white px-3 py-1 rounded text-sm font-medium">
-                  Free cancellation
-                </span>
-                <span className="bg-gray-100 px-3 py-1 rounded text-sm">
-                  Pay at property
-                </span>
-                <span className="bg-gray-100 px-3 py-1 rounded text-sm">
-                  No booking fee
-                </span>
-              </div>
-
-              <h2 className="text-xl font-bold text-gray-900 mb-4">
-                About this property
-              </h2>
-              <p 
-                className="text-gray-700 leading-relaxed mb-6"
+          {activeTab === 1 && (
+            <div className="max-w-3xl bg-white rounded-xl border border-jabil-border p-8 shadow-sm">
+              <h2 className="text-2xl font-bold text-jabil-navy mb-4">Employee Center</h2>
+              <p
+                className="text-gray-700 leading-relaxed mb-4"
                 data-contentful-entry-id={updatedData.sys.id}
                 data-contentful-field-id="roomDescription"
               >
                 {fields.roomDescription}
               </p>
+              <p
+                className="text-gray-600 leading-relaxed"
+                data-contentful-entry-id={updatedData.sys.id}
+                data-contentful-field-id="neighborhoodVibe"
+              >
+                {fields.neighborhoodVibe}
+              </p>
+            </div>
+          )}
 
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">
-                Most popular facilities
-              </h3>
-              <div className="grid md:grid-cols-2 gap-3">
-                {fields.keyAmenities?.map((amenity, index) => (
-                  <div key={index} className="flex items-center space-x-2">
-                    <span className="text-ota-success">✓</span>
-                    <span className="text-gray-700">{amenity}</span>
-                  </div>
-                ))}
+          {activeTab === 2 && (
+            <div className="grid lg:grid-cols-2 gap-6">
+              <div className="bg-white rounded-xl border border-jabil-border p-8 shadow-sm">
+                <h2 className="text-xl font-bold text-jabil-blue mb-3">Featured team</h2>
+                <p
+                  className="text-2xl font-semibold text-jabil-navy mb-2"
+                  data-contentful-entry-id={updatedData.sys.id}
+                  data-contentful-field-id="roomType"
+                >
+                  {fields.roomType}
+                </p>
+                <p className="text-gray-600 text-sm leading-relaxed">{fields.signatureExperience}</p>
+              </div>
+              <div className="bg-jabil-navy text-white rounded-xl p-8">
+                <h2 className="text-xl font-bold text-jabil-sky mb-3">Global footprint</h2>
+                <p
+                  className="text-gray-200 mb-3"
+                  data-contentful-entry-id={updatedData.sys.id}
+                  data-contentful-field-id="location"
+                >
+                  {fields.location}
+                </p>
+                <p className="text-gray-300 text-sm">{fields.neighborhoodVibe}</p>
               </div>
             </div>
+          )}
 
-            {/* Room Options */}
-            <div className="bg-white rounded-lg shadow p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">
-                Available rooms
-              </h2>
-              <div className="border rounded-lg p-4">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <h3 
-                      className="font-semibold text-lg text-gray-900"
-                      data-contentful-entry-id={updatedData.sys.id}
-                      data-contentful-field-id="roomType"
-                    >
-                      {fields.roomType}
-                    </h3>
-                    <div className="flex items-center space-x-4 mt-2 text-sm text-gray-600">
-                      <span>🛏️ 1 king bed</span>
-                      <span>👤 Sleeps 2</span>
-                      <span>📐 450 sq ft</span>
-                    </div>
-                    <div className="mt-3 space-y-1">
-                      <div className="text-sm text-ota-success">✓ Free cancellation before Feb 1</div>
-                      <div className="text-sm text-ota-success">✓ Breakfast included</div>
-                    </div>
-                  </div>
-                  <div className="text-right ml-4">
-                    <div className="text-sm text-gray-500 line-through">$299</div>
-                    <div className="text-3xl font-bold text-gray-900">$249</div>
-                    <div className="text-xs text-gray-500">per night</div>
-                    <button className="mt-3 bg-ota-primary text-white px-6 py-3 rounded font-semibold hover:bg-green-700 transition-colors">
-                      Reserve
-                    </button>
-                  </div>
-                </div>
-              </div>
+          {activeTab === 3 && (
+            <div className="bg-white rounded-xl border border-jabil-border p-8 shadow-sm max-w-3xl">
+              <h2 className="text-2xl font-bold text-jabil-navy mb-4">Company & News</h2>
+              <p
+                className="text-lg font-medium text-jabil-blue mb-3"
+                data-contentful-entry-id={updatedData.sys.id}
+                data-contentful-field-id="heroHeadline"
+              >
+                {fields.heroHeadline}
+              </p>
+              <p className="text-gray-600 leading-relaxed">{fields.signatureExperience}</p>
             </div>
-
-            {/* Reviews */}
-            <div className="bg-white rounded-lg shadow p-6">
-              <h2 className="text-xl font-bold text-gray-900 mb-4">
-                Guest reviews
-              </h2>
-              <div className="flex items-center space-x-4 mb-6">
-                <div className="bg-ota-primary text-white w-16 h-16 rounded flex items-center justify-center text-2xl font-bold">
-                  8.7
-                </div>
-                <div>
-                  <div className="font-semibold text-lg">Excellent</div>
-                  <div className="text-sm text-gray-600">Based on 428 reviews</div>
-                </div>
-              </div>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-700">Location</span>
-                  <div className="flex items-center space-x-2">
-                    <div className="h-2 bg-gray-200 w-32 rounded-full">
-                      <div className="h-2 bg-ota-primary w-[90%] rounded-full"></div>
-                    </div>
-                    <span className="font-semibold">9.0</span>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-700">Cleanliness</span>
-                  <div className="flex items-center space-x-2">
-                    <div className="h-2 bg-gray-200 w-32 rounded-full">
-                      <div className="h-2 bg-ota-primary w-[85%] rounded-full"></div>
-                    </div>
-                    <span className="font-semibold">8.5</span>
-                  </div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-gray-700">Value</span>
-                  <div className="flex items-center space-x-2">
-                    <div className="h-2 bg-gray-200 w-32 rounded-full">
-                      <div className="h-2 bg-ota-primary w-[88%] rounded-full"></div>
-                    </div>
-                    <span className="font-semibold">8.8</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Sidebar */}
-          <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow p-6 sticky top-36">
-              <div className="text-center mb-4">
-                <div className="text-sm text-gray-500">Starting from</div>
-                <div className="text-4xl font-bold text-ota-primary">$249</div>
-                <div className="text-sm text-gray-600">per night</div>
-              </div>
-
-              <div className="border-t border-b py-4 my-4 space-y-3">
-                <div>
-                  <label className="text-sm text-gray-600">Check-in</label>
-                  <input 
-                    type="date" 
-                    className="w-full border rounded px-3 py-2 mt-1"
-                    defaultValue="2025-02-15"
-                  />
-                </div>
-                <div>
-                  <label className="text-sm text-gray-600">Check-out</label>
-                  <input 
-                    type="date" 
-                    className="w-full border rounded px-3 py-2 mt-1"
-                    defaultValue="2025-02-17"
-                  />
-                </div>
-                <div>
-                  <label className="text-sm text-gray-600">Guests</label>
-                  <select className="w-full border rounded px-3 py-2 mt-1">
-                    <option>2 adults</option>
-                    <option>1 adult</option>
-                    <option>3 adults</option>
-                  </select>
-                </div>
-              </div>
-
-              <button className="w-full bg-ota-accent text-gray-900 py-4 rounded-lg font-bold hover:bg-yellow-500 transition-colors mb-3">
-                Check availability
-              </button>
-
-              <div className="text-center text-sm text-gray-600">
-                ✓ Free cancellation until Feb 1
-              </div>
-            </div>
-          </div>
+          )}
         </div>
-      </div>
+      </section>
+
+      <footer className="py-6 bg-white border-t border-jabil-border text-center text-xs text-gray-500">
+        <p>
+          {fields.propertyName} employee intranet · Content powered by Contentful
+        </p>
+      </footer>
     </div>
   );
 }
-

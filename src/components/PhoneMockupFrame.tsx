@@ -30,7 +30,10 @@ export default function PhoneMockupFrame({ children }: PhoneMockupFrameProps) {
               }}
             >
               {/* Scrollable content container */}
-              <div className="w-full h-full overflow-y-auto overflow-x-hidden">
+              <div
+                className="w-full h-full overflow-y-auto overflow-x-hidden pt-12 px-5 pb-5"
+                style={{ paddingTop: 'max(3rem, env(safe-area-inset-top))' }}
+              >
                 {children}
               </div>
             </div>

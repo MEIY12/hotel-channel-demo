@@ -1,119 +1,24 @@
-'use client';
+import { getHotelProperty } from '@/lib/contentful-server';
+import HomePageClient from './HomePageClient';
 
-import { useEffect, useState, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
-import { getHotelProperty } from '@/lib/contentful';
-import { HotelPropertyEntry, ChannelType } from '@/types/contentful';
-import ChannelSwitcher from '@/components/ChannelSwitcher';
-import LuxuryView from '@/components/channels/LuxuryView';
-import OTAView from '@/components/channels/OTAView';
-import MobileView from '@/components/channels/MobileView';
-import EmailView from '@/components/channels/EmailView';
-import KioskView from '@/components/channels/KioskView';
-import PhoneMockupFrame from '@/components/PhoneMockupFrame';
-import { ContentfulLivePreviewProvider, useContentfulLiveUpdates } from '@contentful/live-preview/react';
+type SearchParams = Record<string, string | string[] | undefined>;
 
-/** Entry id from Contentful preview URL, e.g. `?id={entry.sys.id}` or `?entry={entry.sys.id}` */
-function getEntryIdFromSearchParams(searchParams: URLSearchParams): string | undefined {
-  const id = searchParams.get('id')?.trim() || searchParams.get('entry')?.trim();
-  return id || undefined;
+function pickEntryId(searchParams: SearchParams): string | undefined {
+  const id = searchParams.id;
+  const entry = searchParams.entry;
+  if (typeof id === 'string' && id.trim()) return id.trim();
+  if (typeof entry === 'string' && entry.trim()) return entry.trim();
+  return undefined;
 }
 
-function HotelPageContent() {
-  const [hotelData, setHotelData] = useState<HotelPropertyEntry | null>(null);
-  const [loading, setLoading] = useState(true);
-  const searchParams = useSearchParams();
-  const channel = (searchParams.get('channel') || 'luxury') as ChannelType;
-  const entryId = getEntryIdFromSearchParams(searchParams);
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<SearchParams>;
+}) {
+  const params = await searchParams;
+  const entryId = pickEntryId(params);
+  const hotelData = await getHotelProperty(entryId);
 
-  // Use live updates at the parent level so all channels get fresh data
-  const updatedHotelData = useContentfulLiveUpdates(hotelData);
-
-  useEffect(() => {
-    async function loadData() {
-      setLoading(true);
-      const data = await getHotelProperty(entryId);
-      setHotelData(data);
-      setLoading(false);
-    }
-    loadData();
-  }, [entryId]);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading hotel data...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (!hotelData || !updatedHotelData) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-red-600">Error Loading Data</h1>
-          <p className="mt-2 text-gray-600">
-            {entryId
-              ? `No Hotel Property entry was found for id “${entryId}”. Check the id in your preview URL or Contentful.`
-              : 'Please check your Contentful configuration and ensure you have created a Hotel Property entry.'}
-          </p>
-        </div>
-      </div>
-    );
-  }
-
-  const renderChannel = () => {
-    const props = { hotelData: updatedHotelData };
-    
-    switch (channel) {
-      case 'luxury':
-        return <LuxuryView {...props} />;
-      case 'ota':
-        return <OTAView {...props} />;
-      case 'mobile':
-        return (
-          <PhoneMockupFrame>
-            <MobileView {...props} />
-          </PhoneMockupFrame>
-        );
-      case 'email':
-        return <EmailView {...props} />;
-      case 'kiosk':
-        return <KioskView {...props} />;
-      default:
-        return <LuxuryView {...props} />;
-    }
-  };
-
-  return (
-    <ContentfulLivePreviewProvider locale="en-US">
-      <main className="min-h-screen">
-        {/* Show ChannelSwitcher for all channels */}
-        <ChannelSwitcher currentChannel={channel} entryId={updatedHotelData.sys.id} />
-        
-        {/* Add top padding for non-mobile channels to account for the fixed ChannelSwitcher */}
-        <div className={channel === 'mobile' ? '' : 'pt-14'}>
-          {renderChannel()}
-        </div>
-      </main>
-    </ContentfulLivePreviewProvider>
-  );
-}
-
-export default function Home() {
-  return (
-    <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading...</p>
-        </div>
-      </div>
-    }>
-      <HotelPageContent />
-    </Suspense>
-  );
+  return <HomePageClient initialHotelData={hotelData} initialEntryId={entryId} />;
 }

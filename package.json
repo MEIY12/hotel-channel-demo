@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:clean": "lsof -ti :3000,:3001,:3002 | xargs kill 2>/dev/null; rm -rf .next node_modules/.cache && next dev",
+    "start:fresh": "lsof -ti :3000 | xargs kill 2>/dev/null; rm -rf .next && next build && next start",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

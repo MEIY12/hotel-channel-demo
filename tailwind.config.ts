@@ -18,6 +18,14 @@ const config: Config = {
           navy: '#1B2B3A',
           cream: '#F5F1E8',
         },
+        jabil: {
+          blue: '#0067AD',
+          'blue-dark': '#004C82',
+          navy: '#0A1628',
+          sky: '#00A3E0',
+          light: '#F4F7FA',
+          border: '#E2E8F0',
+        },
         corporate: {
           blue: '#2563EB',
           gray: '#6B7280',

@@ -7,32 +7,32 @@ import { useState, useEffect, useCallback } from 'react';
 const channels: ChannelConfig[] = [
   {
     id: 'luxury',
-    name: 'Luxury Brand',
-    description: 'Hotel Homepage',
-    icon: '✨',
+    name: 'Corporate Brand',
+    description: 'Jabil.com experience',
+    icon: '🏭',
   },
   {
     id: 'ota',
-    name: 'OTA Partner',
-    description: 'Online Travel Agency',
+    name: 'Employee Intranet',
+    description: 'Employee intranet (The Hub)',
     icon: '🌐',
   },
   {
     id: 'mobile',
     name: 'Mobile App',
-    description: 'Native Experience',
+    description: 'Jabil.com experience',
     icon: '📱',
   },
   {
     id: 'email',
     name: 'Email Campaign',
-    description: 'Marketing Email',
+    description: 'Marketing email template',
     icon: '📧',
   },
   {
     id: 'kiosk',
     name: 'Digital Kiosk',
-    description: 'In-Lobby Display',
+    description: 'Lobby digital signage',
     icon: '🖥️',
   },
 ];

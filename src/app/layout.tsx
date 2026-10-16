@@ -5,8 +5,9 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Contentful Omni-Channel Demo - The Avalon Denver',
-  description: 'Demonstrating channel-agnostic content management with Contentful',
+  title: 'Jabil Omni-Channel Demo | Contentful',
+  description:
+    'One Jabil content source powering corporate web, employee intranet, mobile, email, and digital signage experiences.',
   // Prevent search engines from indexing this demo site
   robots: {
     index: false,

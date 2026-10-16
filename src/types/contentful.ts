@@ -1,4 +1,20 @@
-import { Entry, Asset, EntrySkeletonType } from 'contentful';
+/** Client-safe types (no `contentful` package import — avoids broken client bundles). */
+
+export interface ContentfulAssetFile {
+  url?: string;
+  details?: { image?: { width?: number; height?: number } };
+  fileName?: string;
+  contentType?: string;
+}
+
+export interface ContentfulAsset {
+  sys?: { id: string };
+  fields?: {
+    title?: string;
+    description?: string;
+    file?: ContentfulAssetFile;
+  };
+}
 
 export interface HotelPropertyFields {
   /** When true, this entry is preferred for the homepage when no `id` is in the URL. */
@@ -11,18 +27,23 @@ export interface HotelPropertyFields {
   neighborhoodVibe: string;
   signatureExperience: string;
   keyAmenities: string[];
-  heroImage: Asset;
-  roomImages: Asset[];
+  heroImage: ContentfulAsset;
+  roomImages: ContentfulAsset[];
 }
 
-export interface HotelPropertySkeleton extends EntrySkeletonType {
-  contentTypeId: 'hotelProperty';
+export interface HotelPropertyEntry {
+  sys: {
+    id: string;
+    type?: string;
+    createdAt?: string;
+    updatedAt?: string;
+    contentType?: { sys: { id: string } };
+  };
+  metadata?: { tags?: unknown[]; concepts?: unknown[] };
   fields: HotelPropertyFields;
 }
 
-export type HotelPropertyEntry = Entry<HotelPropertySkeleton, undefined, string>;
-
-export type ChannelType = 
+export type ChannelType =
   | 'luxury'
   | 'ota'
   | 'mobile'
@@ -35,4 +56,3 @@ export interface ChannelConfig {
   description: string;
   icon: string;
 }
-

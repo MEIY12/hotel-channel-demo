@@ -3,156 +3,143 @@
 import { HotelPropertyEntry, HotelPropertyFields } from '@/types/contentful';
 import { useContentfulLiveUpdates } from '@contentful/live-preview/react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface EmailViewProps {
   hotelData: HotelPropertyEntry;
 }
+
+const SOCIAL_LINKS = [
+  { label: 'Facebook', href: 'https://www.jabil.com/', icon: 'f' },
+  { label: 'Instagram', href: 'https://www.jabil.com/', icon: '◎' },
+  { label: 'Twitter', href: 'https://www.jabil.com/', icon: '𝕏' },
+  { label: 'LinkedIn', href: 'https://www.jabil.com/', icon: 'in' },
+  { label: 'WhatsApp', href: 'https://www.jabil.com/', icon: '✆' },
+];
 
 export default function EmailView({ hotelData }: EmailViewProps) {
   const updatedData = useContentfulLiveUpdates(hotelData) as HotelPropertyEntry;
   const fields = updatedData.fields as HotelPropertyFields;
 
   const heroImageUrl = fields.heroImage?.fields?.file?.url
-    ? `https:${fields.heroImage.fields.file.url}?w=600&h=300&fit=fill`
-    : '/placeholder.jpg';
+    ? `https:${fields.heroImage.fields.file.url}?w=600&h=360&fit=fill`
+    : null;
+
+  const year = new Date().getFullYear();
 
   return (
-    <div className="font-sans bg-[#f2f5f7] py-10 min-h-screen flex justify-center">
-      {/* Email Container */}
-      <div className="w-full max-w-[600px] bg-white shadow-sm mx-auto">
-        
-        {/* Preheader (hidden text usually, but we'll show a top bar) */}
-        <div className="bg-[#1e293b] text-white text-xs py-2 px-6 text-center">
-          Your reservation at {fields.propertyName} is confirmed. Reference #839201
-        </div>
-
-        {/* Logo Header */}
-        <div className="border-b border-gray-100 p-6 text-center">
-          <div 
-            className="inline-block text-xl font-serif font-bold tracking-wider text-gray-900 border-2 border-gray-900 px-3 py-1 uppercase"
+    <div className="font-inter bg-[#e8eaed] min-h-screen pt-14 pb-16 px-4">
+      <div className="max-w-[560px] mx-auto bg-white shadow-sm">
+        {/* Logo */}
+        <div className="pt-10 pb-6 flex justify-center">
+          <div
+            className="w-[88px] h-[88px] border border-gray-200 bg-white flex flex-col items-center justify-center text-center px-2"
             data-contentful-entry-id={updatedData.sys.id}
             data-contentful-field-id="propertyName"
           >
-            {fields.propertyName}
+            <span className="text-[10px] font-bold tracking-widest text-jabil-navy uppercase leading-tight">
+              {fields.propertyName}
+            </span>
           </div>
-          <div 
-            className="mt-4 text-gray-600 font-medium italic"
+        </div>
+
+        {/* Headline */}
+        <div className="px-8 sm:px-12 text-center">
+          <h1
+            className="font-playfair text-[22px] sm:text-[26px] font-bold text-gray-900 leading-snug mb-5"
             data-contentful-entry-id={updatedData.sys.id}
             data-contentful-field-id="heroHeadline"
           >
             {fields.heroHeadline}
-          </div>
+          </h1>
+
+          <p
+            className="font-playfair text-[15px] text-gray-700 leading-relaxed mb-8"
+            data-contentful-entry-id={updatedData.sys.id}
+            data-contentful-field-id="roomDescription"
+          >
+            {fields.roomDescription}
+          </p>
         </div>
 
-        {/* Email Content */}
-        <div className="p-8">
-          <h1 className="text-2xl text-gray-800 font-bold mb-4">Reservation Confirmed</h1>
-          <p className="text-gray-600 mb-6 leading-relaxed">
-            Dear Guest,<br/><br/>
-            We are delighted to confirm your reservation at <span data-contentful-entry-id={updatedData.sys.id} data-contentful-field-id="propertyName" className="font-semibold text-gray-800">{fields.propertyName}</span>. 
-            We look forward to welcoming you for your upcoming stay.
-          </p>
-
-          {/* Hero Image */}
-          <div className="mb-8 rounded overflow-hidden">
-            <Image
-              src={heroImageUrl}
-              alt={fields.propertyName}
-              width={600}
-              height={300}
-              className="w-full h-auto object-cover"
-            />
-          </div>
-
-          {/* Reservation Details Box */}
-          <div className="bg-gray-50 border border-gray-200 rounded-lg p-6 mb-8">
-            <h2 className="text-sm font-bold text-gray-500 uppercase tracking-wide mb-4 border-b border-gray-200 pb-2">Your Trip Details</h2>
-            <div className="grid grid-cols-2 gap-6">
-              <div>
-                <p className="text-xs text-gray-500 mb-1">Check-in</p>
-                <p className="text-gray-900 font-semibold">Fri, Oct 24, 2025</p>
-                <p className="text-xs text-gray-500">After 3:00 PM</p>
-              </div>
-              <div>
-                <p className="text-xs text-gray-500 mb-1">Check-out</p>
-                <p className="text-gray-900 font-semibold">Sun, Oct 26, 2025</p>
-                <p className="text-xs text-gray-500">Before 11:00 AM</p>
-              </div>
-              <div className="col-span-2 border-t border-gray-200 pt-4 mt-2">
-                <p className="text-xs text-gray-500 mb-1">Room Type</p>
-                <p 
-                  className="text-gray-900 font-semibold"
-                  data-contentful-entry-id={updatedData.sys.id}
-                  data-contentful-field-id="roomType"
-                >
-                  {fields.roomType}
-                </p>
-                <p 
-                  className="text-sm text-gray-600 mt-1"
-                  data-contentful-entry-id={updatedData.sys.id}
-                  data-contentful-field-id="roomDescription"
-                >
-                  {fields.roomDescription?.slice(0, 100)}...
-                </p>
-              </div>
-              <div className="col-span-2">
-                <p className="text-xs text-gray-500 mb-1">Location</p>
-                <p 
-                  className="text-gray-900 text-sm"
-                  data-contentful-entry-id={updatedData.sys.id}
-                  data-contentful-field-id="location"
-                >
-                  {fields.location}
-                </p>
-              </div>
+        {/* Hero image */}
+        <div className="px-8 sm:px-12 mb-8">
+          {heroImageUrl ? (
+            <div className="relative w-full aspect-[5/3] bg-gray-100 overflow-hidden">
+              <Image
+                src={heroImageUrl}
+                alt={fields.propertyName}
+                fill
+                className="object-cover"
+              />
             </div>
-          </div>
-
-          {/* Signature Experience / Note */}
-          {fields.signatureExperience && (
-            <div className="mb-8">
-              <h3 className="text-lg font-semibold text-gray-800 mb-2">Enhance Your Stay</h3>
-              <p 
-                className="text-gray-600 text-sm leading-relaxed"
-                data-contentful-entry-id={updatedData.sys.id}
-                data-contentful-field-id="signatureExperience"
-              >
-                {fields.signatureExperience}
-              </p>
+          ) : (
+            <div className="w-full aspect-[5/3] bg-[#eceff1] flex flex-col items-center justify-center text-gray-500">
+              <div className="w-14 h-14 rounded-full bg-gray-300/80 flex items-center justify-center text-2xl mb-3">
+                🖼
+              </div>
+              <p className="text-sm">Add image to the campaign</p>
             </div>
           )}
+        </div>
 
-          {/* CTA */}
-          <div className="text-center mb-8">
-            <a href="#" className="inline-block bg-[#1e293b] text-white px-8 py-3 rounded text-sm font-semibold hover:bg-gray-800 transition-colors no-underline">
-              Manage Reservation
-            </a>
-          </div>
+        {/* CTA */}
+        <div className="px-8 sm:px-12 pb-10 flex justify-center">
+          <Link
+            href="https://www.jabil.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-[#1e2a3b] hover:bg-jabil-navy text-white text-sm font-medium px-10 py-3.5 min-w-[200px] text-center transition-colors"
+            data-contentful-entry-id={updatedData.sys.id}
+            data-contentful-field-id="roomType"
+          >
+            {fields.roomType || 'Learn more'}
+          </Link>
+        </div>
 
-          {/* Need Help */}
-          <div className="border-t border-gray-100 pt-6">
-            <p className="text-gray-600 text-sm mb-2 font-semibold">Questions?</p>
-            <p className="text-gray-500 text-sm">
-              Contact our concierge at <a href="#" className="text-blue-600 underline">concierge@avalondenver.com</a> or call +1 (303) 555-0192.
-            </p>
-          </div>
+        {/* Social */}
+        <div className="flex justify-center gap-3 pb-10">
+          {SOCIAL_LINKS.map((social) => (
+            <Link
+              key={social.label}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={social.label}
+              className="w-9 h-9 rounded-full bg-[#b0b8c4] text-white text-xs font-semibold flex items-center justify-center hover:bg-jabil-blue transition-colors"
+            >
+              {social.icon}
+            </Link>
+          ))}
         </div>
 
         {/* Footer */}
-        <div className="bg-[#f8fafc] p-6 text-center border-t border-gray-200">
-          <p className="text-xs text-gray-400 mb-2">
-            © 2025 {fields.propertyName}. All rights reserved.
+        <div className="px-8 sm:px-12 pb-10 text-center border-t border-gray-100 pt-8">
+          <p className="font-playfair italic text-sm text-gray-600 mb-4">
+            Copyright © {year}{' '}
+            <span data-contentful-entry-id={updatedData.sys.id} data-contentful-field-id="propertyName">
+              {fields.propertyName}
+            </span>
+            , All rights reserved.
           </p>
-          <p className="text-xs text-gray-400">
-            123 Highland St, Denver, CO 80202
+          <p className="text-xs text-gray-500 leading-relaxed max-w-md mx-auto">
+            Want to change how you receive these emails? You can{' '}
+            <button type="button" className="underline text-gray-700 hover:text-jabil-blue">
+              unsubscribe from this list
+            </button>
+            .
           </p>
-          <div className="mt-4 space-x-4 text-xs text-gray-400">
-            <a href="#" className="underline">Privacy Policy</a>
-            <a href="#" className="underline">Unsubscribe</a>
-          </div>
+          {fields.location && (
+            <p
+              className="text-xs text-gray-400 mt-4"
+              data-contentful-entry-id={updatedData.sys.id}
+              data-contentful-field-id="location"
+            >
+              {fields.location}
+            </p>
+          )}
         </div>
       </div>
     </div>
   );
 }
-
